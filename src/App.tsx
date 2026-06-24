@@ -9,7 +9,7 @@ export default function App() {
 
   const navLinks = [
     { name: "Syllabus", href: "#curriculum" },
-    { name: "Pedagogy", href: "#curriculum" },
+
     { name: "Outcomes", href: "#skills" },
     { name: "Inquire", href: "#skills" }
   ]
@@ -45,7 +45,7 @@ export default function App() {
       <nav className="fixed top-0 left-0 right-0 z-30 flex justify-between items-center px-6 sm:px-10 lg:px-16 py-5 lg:py-7 bg-black/10  border-b border-white/[0.03]">
         {/* Left Logo */}
         <a href="#" className="font-podium text-2xl sm:text-3xl font-bold tracking-wider text-white uppercase select-none">
-          BRIDGECOURSE
+          BRIDGECOURSE 3.0
         </a>
 
         {/* Center Navigation Links (Visible md+) */}

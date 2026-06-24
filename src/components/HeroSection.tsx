@@ -76,7 +76,7 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll Down Prompt */}
-      <button 
+      <button
         onClick={() => scrollToSection("curriculum")}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-auto flex flex-col items-center gap-1 opacity-0 animate-fade-in group hover:opacity-100 transition-opacity cursor-pointer border-none bg-transparent"
         style={{ animationDelay: "1.2s" }}
