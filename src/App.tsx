@@ -42,7 +42,7 @@ export default function App() {
       <div className="fixed inset-0 bg-black/45 z-[1] pointer-events-none" />
 
       {/* 3. Header Navbar (Fixed at top) */}
-      <nav className="fixed top-0 left-0 right-0 z-30 flex justify-between items-center px-6 sm:px-10 lg:px-16 py-5 lg:py-7 bg-black/10 backdrop-blur-md border-b border-white/[0.03]">
+      <nav className="fixed top-0 left-0 right-0 z-30 flex justify-between items-center px-6 sm:px-10 lg:px-16 py-5 lg:py-7 bg-black/10  border-b border-white/[0.03]">
         {/* Left Logo */}
         <a href="#" className="font-podium text-2xl sm:text-3xl font-bold tracking-wider text-white uppercase select-none">
           BRIDGECOURSE
@@ -83,9 +83,8 @@ export default function App() {
 
       {/* 4. Mobile Menu Overlay (Below md) */}
       <div
-        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-md flex flex-col justify-between p-6 sm:p-10 transition-all duration-500 md:invisible md:opacity-0 ${
-          menuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
-        }`}
+        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-md flex flex-col justify-between p-6 sm:p-10 transition-all duration-500 md:invisible md:opacity-0 ${menuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+          }`}
       >
         {/* Mobile Header Row */}
         <div className="flex justify-between items-center w-full">
