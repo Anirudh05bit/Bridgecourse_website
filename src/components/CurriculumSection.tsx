@@ -46,23 +46,39 @@ await agent.execute("Analyze server logs & patch vulnerability");`,
     {
       id: "web-app",
       title: "Web & Mobile App Dev",
-      subtitle: "Production Architectures & Cross-Platform",
+      subtitle: "From Markup to Shipped Product",
       icon: Smartphone,
       topics: [
-        "Advanced React / Next.js (Server Components & Hydration)",
-        "Cross-Platform Native Apps with React Native & Expo",
-        "State Management & Cache Syncing (Zustand / React Query)",
-        "Low-Latency API Design (WebSockets / gRPC / GraphQL)"
+        "HTML & CSS — Structuring and Styling the Modern Web",
+        "JavaScript — Logic, Interactivity & the DOM",
+        "Forms — Building & Validating Forms with HTML, CSS & JS",
+        "App Dev — Turning Web Fundamentals into Real Applications"
       ],
-      benefits: "Building basic interfaces is simple; scaling them to load in milliseconds and synchronize in real-time is the real challenge. You will master modern rendering pipelines and state sync across web and mobile. This allows you to ship complete digital products independently.",
-      codeSnippet: `// Synchronized low-latency socket room
-import { WebSocketChannel } from "bridgecourse-sync";
+      benefits: "Every great product starts with the fundamentals done right. You will build fluency in markup, styling, and logic, then put it to work building real, validated forms before graduating to full application builds. By the end, you won't just understand the web — you'll be shipping on it.",
+      codeSnippet: `// A validated form,built from first principles
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Faculty Assignment Test</title>
+</head>
+<body>
+  <h2>Timetable Form Test</h2>
+  <form id="timetableForm">
+    <div>
+      <label>Name</label>
+      <input type="number" id="name" value="1" required>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    document
+      .getElementById("timetableForm")
+      .addEventListener("submit", async (e) => {
+        e.preventDefault();
+  </script>
 
-const socket = new WebSocketChannel("wss://api.bridgecourse.dev/v1/sync");
-socket.joinRoom("production-monitor-room");
-
-socket.on("state_update", (payload) => {
-  updateLocalState(payload.delta);
+</body>
+</html>
 });`,
       color: "blue",
       accentClass: "border-blue-500/30 bg-blue-500/5 hover:border-blue-500/60 shadow-blue-500/5",
@@ -122,7 +138,7 @@ async def main():
     <section id="curriculum" className="relative py-24 px-6 sm:px-10 lg:px-16 border-t border-white/10 z-10 bg-black/60 backdrop-blur-md">
       {/* Background glow visual elements */}
       <div className="absolute top-0 left-1/4 w-[300px] h-[300px] bg-primary/5 rounded-full filter blur-[100px] pointer-events-none" />
-      
+
       <div className="max-w-6xl mx-auto">
         {/* Section Heading */}
         <div className="mb-16 text-left">
@@ -133,17 +149,16 @@ async def main():
             Syllabus <span className="text-primary glow-text">Modules</span>
           </h2>
           <p className="text-white/60 mt-3 max-w-xl text-sm font-light leading-relaxed">
-            We don't teach simple syntax templates. We teach production-level systems design 
+            We don't teach simple syntax templates. We teach production-level systems design
             and implementation across the core technologies of modern engineering. Click a module below to inspect.
           </p>
         </div>
 
         {/* Dynamic Card Deck (Framer Motion Grid) */}
-        <motion.div 
+        <motion.div
           layout
-          className={`grid gap-6 ${
-            expandedId ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-          }`}
+          className={`grid gap-6 ${expandedId ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+            }`}
         >
           {courses.map((course) => {
             const Icon = course.icon
@@ -160,11 +175,10 @@ async def main():
                 onClick={() => {
                   if (!isExpanded) setExpandedId(course.id)
                 }}
-                className={`border rounded-lg p-6 sm:p-8 cursor-pointer flex flex-col justify-between transition-shadow relative overflow-hidden ${
-                  isExpanded 
-                    ? "bg-secondary/90 border-primary/50 shadow-2xl min-h-[500px]" 
-                    : `bg-secondary/20 border-white/10 ${course.accentClass} h-[280px]`
-                }`}
+                className={`border rounded-lg p-6 sm:p-8 cursor-pointer flex flex-col justify-between transition-shadow relative overflow-hidden ${isExpanded
+                  ? "bg-secondary/90 border-primary/50 shadow-2xl min-h-[500px]"
+                  : `bg-secondary/20 border-white/10 ${course.accentClass} h-[280px]`
+                  }`}
               >
                 {/* Background glow lines for tech feel */}
                 {isExpanded && (
@@ -224,7 +238,7 @@ async def main():
                             </li>
                           ))}
                         </ul>
-                        
+
                         <h4 className="text-xs font-mono uppercase text-primary tracking-widest mt-6 mb-3">
                           Benefits & Outcomes:
                         </h4>

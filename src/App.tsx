@@ -39,7 +39,7 @@ export default function App() {
       </video>
 
       {/* 2. Visual Overlay for text legibility (fixed to cover fixed video) */}
-      <div className="fixed inset-0 bg-black/45 z-[1] pointer-events-none" />
+      <div className="fixed inset-0 bg-black/15 z-[1] pointer-events-none" />
 
       {/* 3. Header Navbar (Fixed at top) */}
       <nav className="fixed top-0 left-0 right-0 z-30 flex justify-between items-center px-6 sm:px-10 lg:px-16 py-5 lg:py-7 bg-black/10  border-b border-white/[0.03]">
@@ -66,7 +66,7 @@ export default function App() {
           onClick={() => handleNavLinkClick("#skills")}
           className="hidden md:flex items-center gap-1.5 border border-white/30 hover:border-white/60 px-6 py-3 text-xs tracking-widest uppercase text-white hover:bg-white/10 transition-all font-semibold cursor-pointer"
         >
-          <span>Get in Touch</span>
+          <span>Register Now</span>
           <ArrowUpRight className="w-3.5 h-3.5" />
         </button>
 

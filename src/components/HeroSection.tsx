@@ -10,7 +10,7 @@ export default function HeroSection() {
   }
 
   const stats = [
-    { value: "500+", label: "Engineers Transformed" },
+    { value: "300+", label: "Freshers Transformed" },
     { value: "95%", label: "Placement Rate" },
     { value: "10+", label: "Industry Partners" }
   ]
@@ -20,10 +20,8 @@ export default function HeroSection() {
       <div className="w-full max-w-4xl text-left flex flex-col">
         {/* Tagline */}
         <div className="animate-fade-up flex items-center gap-2 mb-4 sm:mb-6">
-          <Crown className="w-4 h-4 text-white/70" />
-          <span className="text-[10px] sm:text-xs font-semibold text-white/70 tracking-[0.3em] uppercase">
-            World-Class Engineering Collective
-          </span>
+
+
         </div>
 
         {/* Main Title Headers (Podium Font) */}
@@ -75,19 +73,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll Down Prompt */}
-      <button
-        onClick={() => scrollToSection("curriculum")}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-auto flex flex-col items-center gap-1 opacity-0 animate-fade-in group hover:opacity-100 transition-opacity cursor-pointer border-none bg-transparent"
-        style={{ animationDelay: "1.2s" }}
-      >
-        <span className="text-[9px] text-white/50 font-mono tracking-widest uppercase group-hover:text-primary transition-colors">
-          Scroll to explore modules
-        </span>
-        <div className="h-6 w-3.5 border border-white/20 rounded-full flex justify-center p-1 group-hover:border-primary transition-colors">
-          <div className="h-1.5 w-1.5 rounded-full bg-primary animate-bounce" />
-        </div>
-      </button>
+
     </section>
   )
 }
