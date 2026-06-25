@@ -1,61 +1,59 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Brain, Smartphone, Shield, Code, X, Terminal } from "lucide-react"
+import { Brain, Smartphone, Shield, Code, Terminal } from "lucide-react"
 
 interface Course {
   id: string
   title: string
   subtitle: string
-  icon: React.ComponentType<any>
+  icon: React.ComponentType<{ className?: string }>
   topics: string[]
   benefits: string
   codeSnippet: string
-  color: string
-  accentClass: string
-  textClass: string
+  tag: string
 }
 
-export default function CurriculumSection() {
-  const [expandedId, setExpandedId] = useState<string | null>(null)
-
-  const courses: Course[] = [
-    {
-      id: "ai",
-      title: "Artificial Intelligence",
-      subtitle: "Agentic Frameworks & Model Orchestration",
-      icon: Brain,
-      topics: [
-        "LLM Orchestration (LangChain / LlamaIndex)",
-        "Semantic Search & Vector Databases (ChromaDB / Pinecone)",
-        "Autonomous Agentic Workflows & Tool Calling",
-        "Prompt Engineering & Local Model Deployments (Ollama)"
-      ],
-      benefits: "AI engineering is transitioning from simple APIs to autonomous agents. By mastering vector stores, semantic search, and autonomous pipelines, you stop being just a consumer of AI models and start building custom intelligence engines. This makes you eligible for high-demand AI developer roles.",
-      codeSnippet: `import { OpenAI, VectorDB } from "bridgecourse-ai";
+const courses: Course[] = [
+  {
+    id: "ai",
+    title: "Artificial Intelligence",
+    subtitle: "Agentic Frameworks & Model Orchestration",
+    icon: Brain,
+    tag: "AI",
+    topics: [
+      "LLM Orchestration (LangChain / LlamaIndex)",
+      "Semantic Search & Vector Databases (ChromaDB / Pinecone)",
+      "Autonomous Agentic Workflows & Tool Calling",
+      "Prompt Engineering & Local Model Deployments (Ollama)"
+    ],
+    benefits:
+      "AI engineering is transitioning from simple APIs to autonomous agents. By mastering vector stores, semantic search, and autonomous pipelines, you stop being just a consumer of AI models and start building custom intelligence engines. This makes you eligible for high-demand AI developer roles.",
+    codeSnippet: `import { OpenAI, VectorDB } from "bridgecourse-ai";
 
 const agent = new AutonomousAgent({
   model: "llama-3.1-70b",
   tools: [webSearch, databaseQuery],
 });
 
-await agent.execute("Analyze server logs & patch vulnerability");`,
-      color: "emerald",
-      accentClass: "border-emerald-500/30 bg-emerald-500/5 hover:border-emerald-500/60 shadow-emerald-500/5",
-      textClass: "text-emerald-400"
-    },
-    {
-      id: "web-app",
-      title: "Web  Mobile App Dev",
-      subtitle: "From Markup to Shipped Product",
-      icon: Smartphone,
-      topics: [
-        "HTML & CSS — Structuring and Styling the Modern Web",
-        "JavaScript — Logic, Interactivity & the DOM",
-        "Forms — Building & Validating Forms with HTML, CSS & JS",
-        "App Dev — Turning Web Fundamentals into Real Applications"
-      ],
-      benefits: "Every great product starts with the fundamentals done right. You will build fluency in markup, styling, and logic, then put it to work building real, validated forms before graduating to full application builds. By the end, you won't just understand the web — you'll be shipping on it.",
-      codeSnippet: `// A validated form,built from first principles
+await agent.execute(
+  "Analyze server logs & patch vulnerability"
+);`
+  },
+  {
+    id: "web-app",
+    title: "Web & Mobile App Dev",
+    subtitle: "From Markup to Shipped Product",
+    icon: Smartphone,
+    tag: "WEB",
+    topics: [
+      "HTML & CSS — Structuring and Styling the Modern Web",
+      "JavaScript — Logic, Interactivity & the DOM",
+      "Forms — Building & Validating Forms with HTML, CSS & JS",
+      "App Dev — Turning Web Fundamentals into Real Applications"
+    ],
+    benefits:
+      "Every great product starts with the fundamentals done right. You will build fluency in markup, styling, and logic, then put it to work building real, validated forms before graduating to full application builds. By the end, you won't just understand the web — you'll be shipping on it.",
+    codeSnippet: `// A validated form, built from first principles
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,235 +73,339 @@ await agent.execute("Analyze server logs & patch vulnerability");`,
       .getElementById("timetableForm")
       .addEventListener("submit", async (e) => {
         e.preventDefault();
+      });
   </script>
-
 </body>
-</html>
-});`,
-      color: "blue",
-      accentClass: "border-blue-500/30 bg-blue-500/5 hover:border-blue-500/60 shadow-blue-500/5",
-      textClass: "text-blue-400"
-    },
-    {
-      id: "security",
-      title: "Cybersecurity",
-      subtitle: "Offensive Hardening & Infrastructure Sec",
-      icon: Shield,
-      topics: [
-        "Web security and networking - OSI model , core networking fundamentals and application ",
-        "Cryptography - Secure communication , encryption and hashing overview",
-        "Reverse engineering: Binary exploitation and vulnerability discovery",
-        "Forensics: Incidents response lifecycle and file metadata"
-      ],
-      benefits: "Everything we do now is online , which means the digital world is basically the new frontline. Every single second, there are literally millions of cyberattacks happening that we can't see—we're talking about hackers trying to shut down hospitals, wipe out power grids, and drain people's bank accounts. That's why we're here. In this class, you are going to learn how to think exactly like a hacker so you can actually stop them. You’re basically learning a digital superpower to protect people's privacy and defend the real world.Once we wrap up , you can act as tech guardian for your family also you can use this as foundation for building your own digital security tools. ",
-      codeSnippet: `from Crypto.Cipher import AES
+</html>`
+  },
+  {
+    id: "security",
+    title: "Cybersecurity",
+    subtitle: "Offensive Hardening & Infrastructure Sec",
+    icon: Shield,
+    tag: "SEC",
+    topics: [
+      "Web security and networking — OSI model & core fundamentals",
+      "Cryptography — Secure communication, encryption and hashing",
+      "Reverse Engineering — Binary exploitation & vulnerability discovery",
+      "Forensics — Incident response lifecycle and file metadata"
+    ],
+    benefits:
+      "Everything we do now is online, which means the digital world is basically the new frontline. Every second, millions of cyberattacks happen invisibly. In this module, you learn to think exactly like a hacker so you can stop them — building a digital superpower to protect people's privacy and defend the real world.",
+    codeSnippet: `from Crypto.Cipher import AES
 
 KEY = b"MyNewSecretKey!!"
 FLAG = b"CryptoDemoBlock!"
 cipher = AES.new(KEY, AES.MODE_ECB)
+
 # Encryption
 encrypted = cipher.encrypt(FLAG)
 print("Ciphertext (hex):", encrypted.hex())
+
 # Decryption
 cipher_dec = AES.new(KEY, AES.MODE_ECB)
 decrypted = cipher_dec.decrypt(encrypted)
-print("Decrypted text:", decrypted.decode())`,
-      color: "red",
-      accentClass: "border-red-500/30 bg-red-500/5 hover:border-red-500/60 shadow-red-500/5",
-      textClass: "text-red-400"
-    },
-    {
-      id: "python",
-      title: "Python & Systems Programming",
-      subtitle: "High-Performance Concurrency & Microservices",
-      icon: Code,
-      topics: [
-        "Asyncio Concurrency & Multiprocessing Systems",
-        "High-Performance API Architectures (FastAPI / gRPC)",
-        "Algorithms, Advanced Data Structures & Memory Layouts",
-        "Automated System Scripting & DevOps Pipelines"
-      ],
-      benefits: "Python is the backbone of modern machine learning, systems scripting, and data engineering. Mastering asyncio and systems-level Python allows you to write highly efficient code, processing millions of tasks concurrently.",
-      codeSnippet: `import asyncio
+print("Decrypted text:", decrypted.decode())`
+  },
+  {
+    id: "python",
+    title: "Python & Systems",
+    subtitle: "High-Performance Concurrency & Microservices",
+    icon: Code,
+    tag: "PY",
+    topics: [
+      "Asyncio Concurrency & Multiprocessing Systems",
+      "High-Performance API Architectures (FastAPI / gRPC)",
+      "Algorithms, Advanced Data Structures & Memory Layouts",
+      "Automated System Scripting & DevOps Pipelines"
+    ],
+    benefits:
+      "Python is the backbone of modern machine learning, systems scripting, and data engineering. Mastering asyncio and systems-level Python allows you to write highly efficient code, processing millions of tasks concurrently — making you a force in backend, ML, and infrastructure roles.",
+    codeSnippet: `import asyncio
 
 async def worker(task_id: int):
     # Simulating database writing
     await asyncio.sleep(0.01)
-    return f"Task {task_id} successfully synchronized"
+    return f"Task {task_id} synchronized"
 
 async def main():
-    results = await asyncio.gather(*(worker(i) for i in range(1000)))
-    print(f"Processed {len(results)} system-level operations.")`,
-      color: "amber",
-      accentClass: "border-amber-500/30 bg-amber-500/5 hover:border-amber-500/60 shadow-amber-500/5",
-      textClass: "text-amber-400"
-    }
-  ]
+    results = await asyncio.gather(
+        *(worker(i) for i in range(1000))
+    )
+    print(f"Processed {len(results)} operations.")
+
+asyncio.run(main())`
+  }
+]
+
+export default function CurriculumSection() {
+  const [activeId, setActiveId] = useState<string>("ai")
+  const active = courses.find((c) => c.id === activeId)!
+  const Icon = active.icon
 
   return (
-    <section id="curriculum" className="relative scroll-mt-28 py-24 px-6 sm:px-10 lg:px-16 border-t border-white/10 z-10 bg-black/60 backdrop-blur-md">
-      {/* Background glow visual elements */}
-      <div className="absolute top-0 left-1/4 w-[300px] h-[300px] bg-primary/5 rounded-full filter blur-[100px] pointer-events-none" />
+    <section
+      id="curriculum"
+      className="relative scroll-mt-28 py-20 px-6 sm:px-10 lg:px-16 z-10 border-t border-white/10"
+      style={{
+        background:
+          "linear-gradient(160deg, #1a0000 0%, #2d0000 40%, #1a0000 100%)"
+      }}
+    >
+      {/* Ambient glow blobs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          style={{
+            position: "absolute",
+            top: "-80px",
+            left: "10%",
+            width: "500px",
+            height: "500px",
+            background:
+              "radial-gradient(circle, rgba(220,38,38,0.18) 0%, transparent 70%)",
+            borderRadius: "50%"
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-100px",
+            right: "5%",
+            width: "400px",
+            height: "400px",
+            background:
+              "radial-gradient(circle, rgba(185,28,28,0.15) 0%, transparent 70%)",
+            borderRadius: "50%"
+          }}
+        />
+      </div>
 
-      <div className="max-w-6xl mx-auto">
-        {/* Section Heading */}
-        <div className="mb-16 text-left">
-          <p className="text-xs text-primary font-mono tracking-widest uppercase mb-2">
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Section header */}
+        <div className="mb-12">
+          <p
+            className="text-xs font-mono tracking-widest uppercase mb-2"
+            style={{ color: "#f87171" }}
+          >
             [ active curriculum pillars ]
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-podium font-bold text-white uppercase tracking-wider">
-            Syllabus <span className="text-primary glow-text">Moules</span>
+          <h2 className="text-3xl sm:text-5xl font-podium font-bold text-white uppercase tracking-wider">
+            Syllabus{" "}
+            <span style={{ color: "#ef4444" }}>Modules</span>
           </h2>
-          <p className="text-white/60 mt-3 max-w-xl text-sm font-light leading-relaxed">
-            We don't teach simple syntax templates. We teach production-level systems design
-            and implementation across the core technologies of modern engineering. Click a module below to inspect.
+          <p className="text-white/50 mt-3 max-w-xl text-sm font-light leading-relaxed">
+            We don't teach syntax templates. We teach production-level systems
+            design. Click a module to inspect.
           </p>
         </div>
 
-        {/* Dynamic Card Deck (Framer Motion Grid) */}
-        <motion.div
-          layout
-          className={`grid gap-6 ${expandedId ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-            }`}
-        >
-          {courses.map((course) => {
-            const Icon = course.icon
-            const isExpanded = expandedId === course.id
-
-            // When a card is expanded, show only it in full-width, or stack the others in a compact sidebar
-            // Let's implement an elegant filter: if expandedId is set and this isn't the expanded card, hide it
-            if (expandedId && !isExpanded) return null
-
-            return (
-              <motion.div
-                layoutId={`course-card-${course.id}`}
-                key={course.id}
-                onClick={() => {
-                  if (!isExpanded) setExpandedId(course.id)
-                }}
-                className={`border rounded-lg p-6 sm:p-8 cursor-pointer flex flex-col justify-between transition-shadow relative overflow-hidden ${isExpanded
-                  ? "bg-secondary/90 border-primary/50 shadow-2xl min-h-[500px]"
-                  : `bg-secondary/20 border-white/10 ${course.accentClass} h-[280px]`
-                  }`}
-              >
-                {/* Background glow lines for tech feel */}
-                {isExpanded && (
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full filter blur-3xl pointer-events-none" />
-                )}
-
-                {/* Top Content Row */}
-                <div className="flex flex-col gap-4">
-                  <div className="flex justify-between items-start">
-                    <div className={`p-3 rounded bg-white/5 border border-white/10 ${course.textClass}`}>
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    {isExpanded && (
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          setExpandedId(null)
-                        }}
-                        className="text-xs font-mono border border-white/20 hover:border-white/50 px-3 py-1 rounded text-white/70 hover:text-white flex items-center gap-1 cursor-pointer"
-                      >
-                        <X className="w-3.5 h-3.5" />
-                        <span>[ Collapse ]</span>
-                      </button>
-                    )}
+        {/* Layout: tab strip + content panel */}
+        <div className="flex flex-col lg:flex-row gap-6">
+          {/* Tab Strip */}
+          <div className="flex flex-row lg:flex-col gap-2 lg:w-56 flex-shrink-0 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0">
+            {courses.map((course) => {
+              const TabIcon = course.icon
+              const isActive = activeId === course.id
+              return (
+                <button
+                  key={course.id}
+                  onClick={() => setActiveId(course.id)}
+                  className="flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all duration-200 cursor-pointer border"
+                  style={{
+                    background: isActive
+                      ? "linear-gradient(135deg, rgba(239,68,68,0.25) 0%, rgba(185,28,28,0.15) 100%)"
+                      : "rgba(255,255,255,0.03)",
+                    borderColor: isActive
+                      ? "rgba(239,68,68,0.6)"
+                      : "rgba(255,255,255,0.08)",
+                    boxShadow: isActive
+                      ? "0 0 20px rgba(239,68,68,0.15)"
+                      : "none"
+                  }}
+                >
+                  <div
+                    className="p-2 rounded flex-shrink-0"
+                    style={{
+                      background: isActive
+                        ? "rgba(239,68,68,0.2)"
+                        : "rgba(255,255,255,0.05)",
+                      color: isActive ? "#f87171" : "rgba(255,255,255,0.4)"
+                    }}
+                  >
+                    <TabIcon className="w-4 h-4" />
                   </div>
-
-                  <div className="mt-2">
-                    <h3 className="font-podium text-xl sm:text-2xl text-white uppercase tracking-wider">
+                  <div className="min-w-0">
+                    <div
+                      className="text-xs font-mono tracking-widest uppercase"
+                      style={{
+                        color: isActive
+                          ? "#f87171"
+                          : "rgba(255,255,255,0.3)"
+                      }}
+                    >
+                      {course.tag}
+                    </div>
+                    <div
+                      className="text-sm font-bold truncate"
+                      style={{
+                        color: isActive
+                          ? "#ffffff"
+                          : "rgba(255,255,255,0.55)"
+                      }}
+                    >
                       {course.title}
+                    </div>
+                  </div>
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Content Panel */}
+          <div className="flex-1 min-w-0">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeId}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.22 }}
+                className="rounded-xl overflow-hidden border"
+                style={{
+                  borderColor: "rgba(239,68,68,0.25)",
+                  background:
+                    "linear-gradient(145deg, rgba(30,0,0,0.85) 0%, rgba(20,0,0,0.95) 100%)"
+                }}
+              >
+                {/* Panel header */}
+                <div
+                  className="px-6 py-4 border-b flex items-center gap-3"
+                  style={{
+                    borderColor: "rgba(239,68,68,0.2)",
+                    background: "rgba(239,68,68,0.07)"
+                  }}
+                >
+                  <div
+                    className="p-2 rounded"
+                    style={{
+                      background: "rgba(239,68,68,0.15)",
+                      color: "#f87171"
+                    }}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-podium text-white text-lg sm:text-xl uppercase tracking-wider">
+                      {active.title}
                     </h3>
-                    <p className="text-xs text-white/50 tracking-widest uppercase font-mono mt-1">
-                      {course.subtitle}
+                    <p
+                      className="text-xs font-mono tracking-widest uppercase"
+                      style={{ color: "rgba(248,113,113,0.6)" }}
+                    >
+                      {active.subtitle}
                     </p>
                   </div>
                 </div>
 
-                {/* Middle Expansion Content (Visible only when expanded) */}
-                <AnimatePresence>
-                  {isExpanded && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 15 }}
-                      transition={{ delay: 0.15 }}
-                      className="my-6 grid grid-cols-1 md:grid-cols-2 gap-8 text-left"
-                    >
-                      {/* Syllabus List */}
-                      <div>
-                        <h4 className="text-xs font-mono uppercase text-primary tracking-widest mb-3">
-                          Syllabus Competencies:
-                        </h4>
-                        <ul className="space-y-2">
-                          {course.topics.map((topic, i) => (
-                            <li key={i} className="flex items-start gap-2 text-xs sm:text-sm font-light text-white/80">
-                              <span className="text-primary mt-0.5">•</span>
-                              <span>{topic}</span>
-                            </li>
-                          ))}
-                        </ul>
+                {/* Two-column body */}
+                <div className="grid grid-cols-1 md:grid-cols-2 md:divide-x divide-white/5">
+                  {/* Left: syllabus + outcomes */}
+                  <div className="p-6 flex flex-col gap-6">
+                    <div>
+                      <h4
+                        className="text-xs font-mono uppercase tracking-widest mb-3"
+                        style={{ color: "#f87171" }}
+                      >
+                        Syllabus Competencies:
+                      </h4>
+                      <ul className="space-y-2.5">
+                        {active.topics.map((topic, i) => (
+                          <li
+                            key={i}
+                            className="flex items-start gap-2.5 text-sm text-white/75"
+                          >
+                            <span
+                              style={{
+                                color: "#ef4444",
+                                marginTop: "2px",
+                                flexShrink: 0
+                              }}
+                            >
+                              ▸
+                            </span>
+                            <span>{topic}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
 
-                        <h4 className="text-xs font-mono uppercase text-primary tracking-widest mt-6 mb-3">
-                          Benefits & Outcomes:
-                        </h4>
-                        <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light">
-                          {course.benefits}
-                        </p>
-                      </div>
-
-                      {/* Code console */}
-                      <div className="flex flex-col rounded bg-black/60 border border-white/10 overflow-hidden font-mono text-[11px]">
-                        <div className="bg-background/90 px-4 py-2 flex items-center justify-between border-b border-white/5">
-                          <div className="flex items-center gap-1.5">
-                            <Terminal className="h-3 w-3 text-primary" />
-                            <span className="text-white/40 text-[9px]">console.sh</span>
-                          </div>
-                          <div className="flex gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                            <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                            <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                          </div>
-                        </div>
-                        <pre className="p-4 overflow-x-auto text-white/80 text-left whitespace-pre select-text">
-                          <code>{course.codeSnippet}</code>
-                        </pre>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Bottom Action Hint */}
-                {!isExpanded && (
-                  <div className="flex items-center justify-between border-t border-white/5 pt-4 text-xs font-mono text-white/60">
-                    <span>[ CLICK TO CHOOSE ]</span>
-                    <span>-&gt;</span>
+                    <div>
+                      <h4
+                        className="text-xs font-mono uppercase tracking-widest mb-3"
+                        style={{ color: "#f87171" }}
+                      >
+                        Benefits & Outcomes:
+                      </h4>
+                      <p className="text-sm text-white/60 leading-relaxed">
+                        {active.benefits}
+                      </p>
+                    </div>
                   </div>
-                )}
-              </motion.div>
-            )
-          })}
-        </motion.div>
 
-        {/* Dynamic Reset Button when expanded */}
-        <AnimatePresence>
-          {expandedId && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              className="mt-8 flex justify-center"
-            >
-              <button
-                onClick={() => setExpandedId(null)}
-                className="font-mono text-xs border border-primary/30 hover:border-primary text-primary px-6 py-3 uppercase tracking-wider rounded bg-primary/5 cursor-pointer hover:bg-primary/10 transition-all"
-              >
-                [ Show All Syllabus Modules ]
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                  {/* Right: code console */}
+                  <div
+                    className="flex flex-col"
+                    style={{ background: "rgba(0,0,0,0.5)" }}
+                  >
+                    {/* Console top bar */}
+                    <div
+                      className="flex items-center justify-between px-4 py-2.5 border-b"
+                      style={{
+                        borderColor: "rgba(239,68,68,0.15)",
+                        background: "rgba(0,0,0,0.4)"
+                      }}
+                    >
+                      <div className="flex items-center gap-2">
+                        <Terminal
+                          className="w-3.5 h-3.5"
+                          style={{ color: "#f87171" }}
+                        />
+                        <span
+                          className="text-xs font-mono"
+                          style={{ color: "rgba(255,255,255,0.35)" }}
+                        >
+                          console.sh
+                        </span>
+                      </div>
+                      <div className="flex gap-1.5">
+                        <span
+                          className="w-2.5 h-2.5 rounded-full"
+                          style={{ background: "rgba(239,68,68,0.5)" }}
+                        />
+                        <span
+                          className="w-2.5 h-2.5 rounded-full"
+                          style={{ background: "rgba(239,68,68,0.25)" }}
+                        />
+                        <span
+                          className="w-2.5 h-2.5 rounded-full"
+                          style={{ background: "rgba(239,68,68,0.15)" }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Code */}
+                    <pre
+                      className="flex-1 p-5 overflow-x-auto text-xs leading-relaxed font-mono select-text"
+                      style={{ color: "rgba(255,255,255,0.8)" }}
+                    >
+                      <code>{active.codeSnippet}</code>
+                    </pre>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
     </section>
   )
