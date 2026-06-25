@@ -42,7 +42,7 @@ export default function App() {
       <div className="fixed inset-0 bg-black/15 z-[1] pointer-events-none" />
 
       {/* 3. Header Navbar (Fixed at top) */}
-      <nav className="fixed top-0 left-0 right-0 z-30 flex justify-between items-center px-6 sm:px-10 lg:px-16 py-5 lg:py-7 bg-black/10  border-b border-white/[0.03]">
+      <nav className="relative z-30 flex justify-between items-center px-6 sm:px-10 lg:px-16 py-5 lg:py-7 bg-black/10  border-b border-white/[0.03]">
         {/* Left Logo */}
         <a href="#" className="font-podium text-2xl sm:text-3xl font-bold tracking-wider text-white uppercase select-none">
           BRIDGECOURSE 3.0
@@ -133,7 +133,7 @@ export default function App() {
       </div>
 
       {/* 5. Main Scrolling Content Sections (Overlapping fixed video) */}
-      <div className="relative z-10 w-full flex flex-col px-6 sm:px-10 lg:px-16 pt-24 sm:pt-28">
+      <div className="relative z-10 w-full flex flex-col px-6 sm:px-10 lg:px-16 ">
         <HeroSection />
         <CurriculumSection />
         <SkillMatrixSection />
