@@ -1,4 +1,3 @@
-import React from "react"
 import { motion } from "framer-motion"
 import { Terminal, ShieldCheck, Zap, Cpu } from "lucide-react"
 
@@ -38,7 +37,7 @@ export default function SkillMatrixSection() {
   ]
 
   return (
-    <section id="skills" className="relative py-24 px-6 sm:px-10 lg:px-16 border-t border-white/10 z-10 bg-black/80 backdrop-blur-md overflow-hidden">
+    <section id="skills" className="relative scroll-mt-28 py-24 px-6 sm:px-10 lg:px-16 border-t border-white/10 z-10 bg-black/80 backdrop-blur-md overflow-hidden">
       {/* Background styling elements */}
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full filter blur-[120px] pointer-events-none" />
       <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-primary/5 rounded-full filter blur-[100px] pointer-events-none" />

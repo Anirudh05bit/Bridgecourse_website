@@ -1,5 +1,4 @@
-import React from "react"
-import { ArrowUpRight, Award, Crown } from "lucide-react"
+import { ArrowUpRight, Award } from "lucide-react"
 
 export default function HeroSection() {
   const scrollToSection = (id: string) => {
@@ -16,7 +15,7 @@ export default function HeroSection() {
   ]
 
   return (
-    <section className="relative h-screen w-full flex items-center justify-start z-10 pt-20">
+    <section className="relative min-h-[calc(100vh-7rem)] w-full flex items-start justify-start z-10 pt-24 sm:pt-28 pb-16">
       <div className="w-full max-w-4xl text-left flex flex-col">
         {/* Tagline */}
         <div className="animate-fade-up flex items-center gap-2 mb-4 sm:mb-6">

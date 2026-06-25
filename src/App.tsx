@@ -133,7 +133,7 @@ export default function App() {
       </div>
 
       {/* 5. Main Scrolling Content Sections (Overlapping fixed video) */}
-      <div className="relative z-10 w-full flex flex-col px-6 sm:px-10 lg:px-16">
+      <div className="relative z-10 w-full flex flex-col px-6 sm:px-10 lg:px-16 pt-24 sm:pt-28">
         <HeroSection />
         <CurriculumSection />
         <SkillMatrixSection />

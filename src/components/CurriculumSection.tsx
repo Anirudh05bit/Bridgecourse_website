@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Brain, Smartphone, Shield, Code, X, Terminal } from "lucide-react"
 
@@ -45,7 +45,7 @@ await agent.execute("Analyze server logs & patch vulnerability");`,
     },
     {
       id: "web-app",
-      title: "Web & Mobile App Dev",
+      title: "Web  Mobile App Dev",
       subtitle: "From Markup to Shipped Product",
       icon: Smartphone,
       topics: [
@@ -86,22 +86,28 @@ await agent.execute("Analyze server logs & patch vulnerability");`,
     },
     {
       id: "security",
-      title: "Zero-Trust Cybersecurity",
+      title: "Cybersecurity",
       subtitle: "Offensive Hardening & Infrastructure Sec",
       icon: Shield,
       topics: [
-        "OWASP Top 10 Defensive Hardening & AppSec",
-        "Zero-Trust Architecture & Cryptographic Signature Verification",
-        "JWT / OAuth2 / SSO Custom Implementations",
-        "Vulnerability Scans & Penetration Testing Protocols"
+        "Web security and networking - OSI model , core networking fundamentals and application ",
+        "Cryptography - Secure communication , encryption and hashing overview",
+        "Reverse engineering: Binary exploitation and vulnerability discovery",
+        "Forensics: Incidents response lifecycle and file metadata"
       ],
-      benefits: "Security is no longer a luxury—it is an engineering prerequisite. Learning JWT authentication, threat modeling, and encryption standards ensures your applications are secure-by-default. Companies value engineers who write secure code, keeping system architectures safe from breaches.",
-      codeSnippet: `# Defensive vulnerability sweep simulator
-nmap -sS -sV -A -T4 -p 80,443,8080 secure.bridgecourse.dev
+      benefits: "Everything we do now is online , which means the digital world is basically the new frontline. Every single second, there are literally millions of cyberattacks happening that we can't see—we're talking about hackers trying to shut down hospitals, wipe out power grids, and drain people's bank accounts. That's why we're here. In this class, you are going to learn how to think exactly like a hacker so you can actually stop them. You’re basically learning a digital superpower to protect people's privacy and defend the real world.Once we wrap up , you can act as tech guardian for your family also you can use this as foundation for building your own digital security tools. ",
+      codeSnippet: `from Crypto.Cipher import AES
 
-[+] Port 443 OPEN: TLSv1.3 Strong Ciphers Enabled
-[+] Port 8080 OPEN: Zero-Trust Gateway Active (MFA Required)
-[+] Scan Complete: 0 vulnerabilities found.`,
+KEY = b"MyNewSecretKey!!"
+FLAG = b"CryptoDemoBlock!"
+cipher = AES.new(KEY, AES.MODE_ECB)
+# Encryption
+encrypted = cipher.encrypt(FLAG)
+print("Ciphertext (hex):", encrypted.hex())
+# Decryption
+cipher_dec = AES.new(KEY, AES.MODE_ECB)
+decrypted = cipher_dec.decrypt(encrypted)
+print("Decrypted text:", decrypted.decode())`,
       color: "red",
       accentClass: "border-red-500/30 bg-red-500/5 hover:border-red-500/60 shadow-red-500/5",
       textClass: "text-red-400"
@@ -135,7 +141,7 @@ async def main():
   ]
 
   return (
-    <section id="curriculum" className="relative py-24 px-6 sm:px-10 lg:px-16 border-t border-white/10 z-10 bg-black/60 backdrop-blur-md">
+    <section id="curriculum" className="relative scroll-mt-28 py-24 px-6 sm:px-10 lg:px-16 border-t border-white/10 z-10 bg-black/60 backdrop-blur-md">
       {/* Background glow visual elements */}
       <div className="absolute top-0 left-1/4 w-[300px] h-[300px] bg-primary/5 rounded-full filter blur-[100px] pointer-events-none" />
 
@@ -146,7 +152,7 @@ async def main():
             [ active curriculum pillars ]
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-podium font-bold text-white uppercase tracking-wider">
-            Syllabus <span className="text-primary glow-text">Modules</span>
+            Syllabus <span className="text-primary glow-text">Moules</span>
           </h2>
           <p className="text-white/60 mt-3 max-w-xl text-sm font-light leading-relaxed">
             We don't teach simple syntax templates. We teach production-level systems design
