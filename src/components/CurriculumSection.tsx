@@ -228,13 +228,6 @@ export default function CurriculumSection() {
   const totalLines = active.codeSnippet.split("\n").length
   const typedLines = typed.split("\n").length
 
-  // Auto-advance every 8 s
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      setActiveIdx((prev) => (prev + 1) % courses.length)
-    }, 8000)
-    return () => window.clearInterval(id)
-  }, [])
 
   return (
     <section
@@ -290,10 +283,10 @@ export default function CurriculumSection() {
         {/* Header */}
         <div className="mb-8">
           <p className="text-[10px] font-mono tracking-[0.4em] uppercase mb-2" style={{ color: "#f87171" }}>
-            [ active curriculum pillars ]
+            
           </p>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white uppercase tracking-[0.06em] leading-[0.95]">
-            Syllabus <GlitchText>Modules</GlitchText>
+            Syllabus <span style={{ color: "#ef4444" }}>Modules</span>
           </h2>
           <p className="text-white/45 mt-3 max-w-xl text-sm font-light leading-relaxed">
             We don't teach syntax templates. We teach production-level systems design.{" "}
@@ -366,20 +359,7 @@ export default function CurriculumSection() {
               )
             })}
 
-            {/* Auto-advance timer bar */}
-            <div className="hidden lg:block mt-3 px-1">
-              <div className="h-px w-full rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
-                <motion.div
-                  key={activeIdx}
-                  className="h-full rounded-full"
-                  style={{ background: "linear-gradient(90deg, #991b1b, #ef4444)" }}
-                  initial={{ width: "0%" }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 8, ease: "linear" }}
-                />
-              </div>
-              <p className="text-[9px] font-mono uppercase tracking-[0.25em] text-white/25 mt-1.5">auto-advancing</p>
-            </div>
+
           </div>
 
           {/* Content panel */}
