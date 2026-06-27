@@ -180,28 +180,6 @@ function highlight(src: string, lang: string): string {
   return s
 }
 
-/* ── Glitch text ── */
-function GlitchText({ children }: { children: string }) {
-  return (
-    <span className="relative inline-block">
-      <span className="relative z-10">{children}</span>
-      <motion.span
-        aria-hidden
-        className="absolute inset-0 z-0"
-        style={{ color: "#ef4444", mixBlendMode: "screen" }}
-        animate={{ x: [0, -2, 1.5, 0, -1, 0], opacity: [0.6, 0.9, 0.4, 0.7, 0.5, 0.6] }}
-        transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
-      >{children}</motion.span>
-      <motion.span
-        aria-hidden
-        className="absolute inset-0 z-0"
-        style={{ color: "#22d3ee", mixBlendMode: "screen" }}
-        animate={{ x: [0, 2, -1.5, 0, 1, 0], opacity: [0.25, 0.45, 0.2, 0.35, 0.3, 0.25] }}
-        transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-      >{children}</motion.span>
-    </span>
-  )
-}
 
 /* ── Corner brackets ── */
 function Brackets() {

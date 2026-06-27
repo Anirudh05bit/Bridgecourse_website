@@ -284,7 +284,7 @@ function StatBlock({
 }
 
 /* ── Main ── */
-export default function SkillMatrixSection() {
+export default function SkillMatrixSection({ onRegister }: { onRegister?: () => void }) {
   const [activeId, setActiveId] = useState<string>("ai")
   const active = modules.find((m) => m.id === activeId)!
   const Icon = active.icon
@@ -588,7 +588,7 @@ export default function SkillMatrixSection() {
               <motion.button
                 whileHover={{ scale: 1.015 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => alert("Redirecting to registration...")}
+                onClick={onRegister}
                 className="group relative w-full py-4 text-xs font-mono font-bold uppercase tracking-[0.4em] rounded-xl cursor-pointer overflow-hidden"
                 style={{
                   background: "linear-gradient(135deg, #b91c1c 0%, #dc2626 50%, #7f1d1d 100%)",

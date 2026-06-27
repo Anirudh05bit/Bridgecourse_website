@@ -1,24 +1,36 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { ArrowUpRight, X } from "lucide-react"
 import HeroSection from "./components/HeroSection"
 import CurriculumSection from "./components/CurriculumSection"
 import SkillMatrixSection from "./components/SkillMatrixSection"
+import InquireSection from "./components/InquireSection"
+import RegisterPage from "./pages/RegisterPage"
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [currentView, setCurrentView] = useState<'home' | 'register'>('home')
 
   const navLinks = [
     { name: "Syllabus", href: "#curriculum" },
-
     { name: "Outcomes", href: "#skills" },
-    { name: "Inquire", href: "#skills" }
+    { name: "Inquire", href: "#inquire" }
   ]
 
   const handleNavLinkClick = (href: string) => {
     setMenuOpen(false)
-    const el = document.querySelector(href)
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" })
+    if (currentView !== 'home') {
+      setCurrentView('home')
+      setTimeout(() => {
+        const el = document.querySelector(href)
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" })
+        }
+      }, 100)
+    } else {
+      const el = document.querySelector(href)
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" })
+      }
     }
   }
 
@@ -44,9 +56,15 @@ export default function App() {
       {/* 3. Header Navbar (Fixed at top) */}
       <nav className="relative z-30 flex justify-between items-center px-6 sm:px-10 lg:px-16 py-5 lg:py-7 bg-black/10  border-b border-white/[0.03]">
         {/* Left Logo */}
-        <a href="#" className="font-podium text-2xl sm:text-3xl font-bold tracking-wider text-white uppercase select-none">
+        <button
+          onClick={() => {
+            setCurrentView("home")
+            window.scrollTo({ top: 0, behavior: "smooth" })
+          }}
+          className="font-podium text-2xl sm:text-3xl font-bold tracking-wider text-white uppercase select-none bg-transparent border-none cursor-pointer text-left outline-none"
+        >
           BRIDGECOURSE 3.0
-        </a>
+        </button>
 
         {/* Center Navigation Links (Visible md+) */}
         <div className="hidden md:flex items-center gap-8 lg:gap-12">
@@ -61,10 +79,10 @@ export default function App() {
           ))}
         </div>
 
-        {/* Right CTA / Inquire Button (Visible md+) */}
+        {/* Right CTA / Register Now Button (Visible md+) */}
         <button
-          onClick={() => handleNavLinkClick("#skills")}
-          className="hidden md:flex items-center gap-1.5 border border-white/30 hover:border-white/60 px-6 py-3 text-xs tracking-widest uppercase text-white hover:bg-white/10 transition-all font-semibold cursor-pointer"
+          onClick={() => setCurrentView('register')}
+          className="hidden md:flex items-center gap-1.5 border border-white/30 hover:border-white/60 px-6 py-3 text-xs tracking-widest uppercase text-white hover:bg-white/10 transition-all font-semibold cursor-pointer outline-none"
         >
           <span>Register Now</span>
           <ArrowUpRight className="w-3.5 h-3.5" />
@@ -116,9 +134,12 @@ export default function App() {
             </button>
           ))}
 
-          {/* Staggered mobile GET IN TOUCH */}
+          {/* Staggered mobile Register Now */}
           <button
-            onClick={() => handleNavLinkClick("#skills")}
+            onClick={() => {
+              setMenuOpen(false)
+              setCurrentView('register')
+            }}
             style={{
               transitionDelay: `${navLinks.length * 80 + 100}ms`,
               transform: menuOpen ? "translateY(0)" : "translateY(20px)",
@@ -126,7 +147,7 @@ export default function App() {
             }}
             className="mt-6 self-start flex items-center gap-1.5 border border-white/30 hover:border-white/60 px-6 py-3.5 text-xs tracking-widest uppercase text-white hover:bg-white/10 transition-all font-semibold cursor-pointer"
           >
-            <span>Get in Touch</span>
+            <span>Register Now</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -134,9 +155,16 @@ export default function App() {
 
       {/* 5. Main Scrolling Content Sections (Overlapping fixed video) */}
       <div className="relative z-10 w-full flex flex-col px-6 sm:px-10 lg:px-16 ">
-        <HeroSection />
-        <CurriculumSection />
-        <SkillMatrixSection />
+        {currentView === 'register' ? (
+          <RegisterPage onClose={() => setCurrentView('home')} />
+        ) : (
+          <>
+            <HeroSection />
+            <CurriculumSection />
+            <SkillMatrixSection onRegister={() => setCurrentView('register')} />
+            <InquireSection />
+          </>
+        )}
       </div>
     </div>
   )
