@@ -178,8 +178,8 @@ function BackgroundGrid() {
 
 /* ─── Main Inquire Section ─── */
 export default function InquireSection() {
-    const phone = "+91 98765 43210";
-    const instagramHandle = "@nishanth.devabathini";
+    const phone = "+91 9133139468";
+    const instagramHandle = "@i_lv_blackniggas";
     const instagramUrl = "https://instagram.com/nishanth.devabathini";
 
     // 3D Tilt

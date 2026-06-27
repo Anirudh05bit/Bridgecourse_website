@@ -1,14 +1,39 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ArrowUpRight, X } from "lucide-react"
 import HeroSection from "./components/HeroSection"
 import CurriculumSection from "./components/CurriculumSection"
 import SkillMatrixSection from "./components/SkillMatrixSection"
 import InquireSection from "./components/InquireSection"
 import RegisterPage from "./pages/RegisterPage"
+import AdminDashboard from "./pages/AdminDashboard"
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [currentView, setCurrentView] = useState<'home' | 'register'>('home')
+  const [currentView, setCurrentView] = useState<'home' | 'register' | 'admin'>(() => {
+    if (window.location.pathname === '/admin') return 'admin'
+    return 'home'
+  })
+
+  // Sync pathname with currentView
+  useEffect(() => {
+    const targetPath = currentView === 'admin' ? '/admin' : '/'
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState(null, '', targetPath)
+    }
+  }, [currentView])
+
+  // Listen to popstate for browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      if (window.location.pathname === '/admin') {
+        setCurrentView('admin')
+      } else {
+        setCurrentView('home')
+      }
+    }
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
 
   const navLinks = [
     { name: "Syllabus", href: "#curriculum" },
@@ -155,7 +180,9 @@ export default function App() {
 
       {/* 5. Main Scrolling Content Sections (Overlapping fixed video) */}
       <div className="relative z-10 w-full flex flex-col px-6 sm:px-10 lg:px-16 ">
-        {currentView === 'register' ? (
+        {currentView === 'admin' ? (
+          <AdminDashboard onClose={() => setCurrentView('home')} />
+        ) : currentView === 'register' ? (
           <RegisterPage onClose={() => setCurrentView('home')} />
         ) : (
           <>
