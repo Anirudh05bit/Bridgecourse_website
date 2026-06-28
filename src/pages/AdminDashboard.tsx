@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { 
-    Lock, ArrowLeft, Trash2, Download, Search, 
+import {
+    Lock, ArrowLeft, Trash2, Download, Search,
     Database, Users, ShieldAlert, GraduationCap, X, Check, Loader2
 } from "lucide-react"
 import { supabase, isSupabaseConfigured } from "../lib/supabaseClient"
@@ -19,20 +19,13 @@ interface AdminDashboardProps {
     onClose: () => void
 }
 
-const mockStudents = [
-    { name: "Anirudh Sharma", phone: "9876543210", rollNo: "22CSE1024", department: "CSE" },
-    { name: "Meera Nair", phone: "9123456789", rollNo: "22AIML098", department: "CSE-AI" },
-    { name: "Nitin Devabathini", phone: "8887776662", rollNo: "22SEC405", department: "Cyber Security" },
-    { name: "Harish Kumar", phone: "7776665551", rollNo: "21ECE201", department: "ECE" },
-    { name: "Priya Rao", phone: "9998887773", rollNo: "23AIDS302", department: "AIDS" },
-    { name: "Vikram Sen", phone: "9876123450", rollNo: "22EEE501", department: "EEE" }
-]
+
 
 export default function AdminDashboard({ onClose }: AdminDashboardProps) {
     const [passcode, setPasscode] = useState("")
     const [isAuthorized, setIsAuthorized] = useState(false)
     const [passError, setPassError] = useState(false)
-    
+
     const [registrations, setRegistrations] = useState<Registration[]>([])
     const [searchQuery, setSearchQuery] = useState("")
     const [deptFilter, setDeptFilter] = useState("ALL")
@@ -49,7 +42,7 @@ export default function AdminDashboard({ onClose }: AdminDashboardProps) {
                     .select("*")
                     .order("timestamp", { ascending: false })
                 if (error) throw error
-                
+
                 const mapped: Registration[] = (data || []).map((row: any) => ({
                     id: row.id,
                     name: row.name,
@@ -108,26 +101,7 @@ export default function AdminDashboard({ onClose }: AdminDashboardProps) {
     }
 
     // Secret Mock Data Generator
-    const injectMockData = () => {
-        try {
-            const list = [...registrations]
-            mockStudents.forEach((student) => {
-                // Prevent duplicate roll numbers in current session
-                if (!list.some((r) => r.rollNo === student.rollNo)) {
-                    list.push({
-                        ...student,
-                        id: Math.random().toString(36).substring(2, 9),
-                        timestamp: new Date(Date.now() - Math.random() * 86400000 * 3).toISOString()
-                    })
-                }
-            })
-            localStorage.setItem("bc_registrations", JSON.stringify(list))
-            setRegistrations(list)
-            showToast("Mock Database Injected")
-        } catch (e) {
-            console.error("Failed to inject mock data:", e)
-        }
-    }
+
 
     // Clear DB
     const clearDatabase = async () => {
@@ -188,7 +162,7 @@ export default function AdminDashboard({ onClose }: AdminDashboardProps) {
             alert("No registrations available to export.")
             return
         }
-        
+
         try {
             const headers = ["ID", "Name", "Phone", "Roll Number", "Department", "Timestamp"]
             const rows = registrations.map((r) => [
@@ -199,10 +173,10 @@ export default function AdminDashboard({ onClose }: AdminDashboardProps) {
                 r.department,
                 r.timestamp
             ])
-            
-            const csvContent = "data:text/csv;charset=utf-8," 
+
+            const csvContent = "data:text/csv;charset=utf-8,"
                 + [headers.join(","), ...rows.map(e => e.join(","))].join("\n")
-                
+
             const encodedUri = encodeURI(csvContent)
             const link = document.createElement("a")
             link.setAttribute("href", encodedUri)
@@ -219,13 +193,13 @@ export default function AdminDashboard({ onClose }: AdminDashboardProps) {
     // Filter registrations
     const filteredRegistrations = useMemo(() => {
         return registrations.filter((r) => {
-            const matchesSearch = 
+            const matchesSearch =
                 r.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 r.rollNo.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 r.phone.includes(searchQuery)
-            
+
             const matchesDept = deptFilter === "ALL" || r.department === deptFilter
-            
+
             return matchesSearch && matchesDept
         })
     }, [registrations, searchQuery, deptFilter])
@@ -282,7 +256,7 @@ export default function AdminDashboard({ onClose }: AdminDashboardProps) {
                                 className="w-full bg-red-950/10 border border-red-900/40 focus:border-red-500/80 rounded-xl px-4 py-3.5 text-center text-sm text-white placeholder:text-white/20 outline-none transition-all duration-300 font-mono tracking-widest"
                             />
                         </div>
-                        
+
                         {passError && (
                             <p className="text-xs text-red-500 font-mono tracking-wider animate-pulse">
                                 ⚠ AUTHORIZATION FAILED
@@ -297,7 +271,7 @@ export default function AdminDashboard({ onClose }: AdminDashboardProps) {
                             Decrypt Database
                         </button>
                     </form>
-                    
+
                     <button
                         onClick={onClose}
                         className="mt-6 text-[10px] font-mono uppercase tracking-widest text-white/40 hover:text-white transition-colors cursor-pointer bg-transparent border-none outline-none"
@@ -333,12 +307,7 @@ export default function AdminDashboard({ onClose }: AdminDashboardProps) {
 
                 {/* Dashboard Controls */}
                 <div className="flex flex-wrap items-center gap-3">
-                    <button
-                        onClick={injectMockData}
-                        className="px-4 py-2 text-[10px] font-mono uppercase tracking-widest rounded-lg border border-red-800/40 bg-red-950/10 hover:bg-red-950/30 text-red-400 hover:text-red-300 transition-all cursor-pointer outline-none"
-                    >
-                        ⚡ Inject Mock Data
-                    </button>
+
                     <button
                         onClick={downloadCSV}
                         className="flex items-center gap-2 px-4 py-2 text-[10px] font-mono uppercase tracking-widest rounded-lg border border-red-700/60 bg-red-900/20 hover:bg-red-800/30 text-white transition-all cursor-pointer outline-none"
@@ -387,8 +356,8 @@ export default function AdminDashboard({ onClose }: AdminDashboardProps) {
                                             <span className="text-white/80 font-bold">{count}</span>
                                         </div>
                                         <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                                            <div 
-                                                className="h-full bg-red-600 rounded-full transition-all duration-500" 
+                                            <div
+                                                className="h-full bg-red-600 rounded-full transition-all duration-500"
                                                 style={{ width: `${pct}%`, boxShadow: count > 0 ? "0 0 6px rgba(239,68,68,0.5)" : "none" }}
                                             />
                                         </div>
@@ -431,11 +400,10 @@ export default function AdminDashboard({ onClose }: AdminDashboardProps) {
                                 <button
                                     key={dept}
                                     onClick={() => setDeptFilter(dept)}
-                                    className={`px-3 py-1.5 rounded-lg text-[9px] font-mono uppercase tracking-widest cursor-pointer transition-all border outline-none ${
-                                        deptFilter === dept 
-                                            ? "bg-red-600 border-red-500 text-white shadow-[0_0_10px_rgba(239,68,68,0.35)]" 
+                                    className={`px-3 py-1.5 rounded-lg text-[9px] font-mono uppercase tracking-widest cursor-pointer transition-all border outline-none ${deptFilter === dept
+                                            ? "bg-red-600 border-red-500 text-white shadow-[0_0_10px_rgba(239,68,68,0.35)]"
                                             : "bg-red-950/10 border-red-900/30 text-white/50 hover:text-white"
-                                    }`}
+                                        }`}
                                 >
                                     {dept}
                                 </button>
@@ -477,8 +445,8 @@ export default function AdminDashboard({ onClose }: AdminDashboardProps) {
                                                 </td>
                                                 <td className="py-4 px-5 font-mono text-white/60">{reg.phone}</td>
                                                 <td className="py-4 px-5 text-white/40 font-mono text-[10px]">
-                                                    {new Date(reg.timestamp).toLocaleDateString(undefined, { 
-                                                        month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+                                                    {new Date(reg.timestamp).toLocaleDateString(undefined, {
+                                                        month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
                                                     })}
                                                 </td>
                                                 <td className="py-4 px-5 text-right">

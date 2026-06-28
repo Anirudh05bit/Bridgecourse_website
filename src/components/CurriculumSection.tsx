@@ -174,7 +174,7 @@ function highlight(src: string, lang: string): string {
   } else {
     kws = /\b(import|from|const|let|var|async|await|return|class|new|function|if|else|export|default|true|false|null|undefined)\b/g
   }
-  s = s.replace(kws, '<span style="color:#f87171;font-weight:600">$1</span>')
+  s = s.replace(kws, '<span style="color:#f87171;font-weight:">$1</span>')
   s = s.replace(/\b(\d+\.?\d*)\b/g, '<span style="color:#fb923c">$1</span>')
   s = s.replace(/([A-Za-z_][A-Za-z0-9_]*)(?=\()/g, '<span style="color:#fde68a">$1</span>')
   return s
@@ -261,7 +261,7 @@ export default function CurriculumSection() {
         {/* Header */}
         <div className="mb-8">
           <p className="text-[10px] font-mono tracking-[0.4em] uppercase mb-2" style={{ color: "#f87171" }}>
-            
+
           </p>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white uppercase tracking-[0.06em] leading-[0.95]">
             Syllabus <span style={{ color: "#ef4444" }}>Modules</span>
