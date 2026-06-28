@@ -210,7 +210,7 @@ export default function CurriculumSection() {
   return (
     <section
       id="curriculum"
-      className="relative scroll-mt-20 z-10 py-10 border-t border-white/10 overflow-hidden"
+      className="relative scroll-mt-20 z-10 py-8 sm:py-10 border-t border-white/10 overflow-hidden"
       style={{ background: "radial-gradient(ellipse at top, #2d0000 0%, #140000 55%, #0a0000 100%)" }}
     >
       {/* Grid floor */}
@@ -237,7 +237,7 @@ export default function CurriculumSection() {
         style={{ backgroundImage: "repeating-linear-gradient(0deg, rgba(255,255,255,0.6) 0 1px, transparent 1px 3px)" }} />
 
       {/* Progress dots */}
-      <div className="absolute top-4 right-6 sm:right-10 lg:right-16 z-20 flex items-center gap-2">
+      <div className="absolute top-3 right-4 sm:right-10 lg:right-16 z-20 flex items-center gap-1.5 sm:gap-2">
         {courses.map((_, i) => (
           <button
             key={i}
@@ -354,7 +354,7 @@ export default function CurriculumSection() {
                   borderColor: "rgba(239,68,68,0.28)",
                   background: "linear-gradient(145deg, rgba(30,0,0,0.82) 0%, rgba(15,0,0,0.95) 100%)",
                   boxShadow: "0 20px 60px -20px rgba(239,68,68,0.3), inset 0 1px 0 rgba(255,255,255,0.04)",
-                  minHeight: "520px",
+                  minHeight: "auto",
                 }}
               >
                 <Brackets />
@@ -390,7 +390,7 @@ export default function CurriculumSection() {
                 </div>
 
                 {/* Body */}
-                <div className="grid grid-cols-1 md:grid-cols-2 md:divide-x divide-white/5" style={{ minHeight: "460px" }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 md:divide-x divide-white/5" style={{ minHeight: "auto" }}>
 
                   {/* Left */}
                   <div className="p-6 flex flex-col gap-6">
@@ -432,7 +432,7 @@ export default function CurriculumSection() {
                   </div>
 
                   {/* Right: terminal */}
-                  <div className="flex flex-col" style={{ background: "rgba(0,0,0,0.55)" }}>
+                  <div className="hidden sm:flex flex-col" style={{ background: "rgba(0,0,0,0.55)" }}>
                     {/* Console bar */}
                     <div
                       className="flex items-center justify-between px-4 py-2.5 border-b flex-shrink-0"

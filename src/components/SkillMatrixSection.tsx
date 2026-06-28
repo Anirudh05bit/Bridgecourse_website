@@ -297,7 +297,7 @@ export default function SkillMatrixSection({ onRegister }: { onRegister?: () => 
     <section
       ref={sectionRef}
       id="skills"
-      className="relative scroll-mt-28 py-24 px-6 sm:px-10 lg:px-16 z-10 border-t overflow-hidden"
+      className="relative scroll-mt-28 py-12 sm:py-20 px-4 sm:px-8 lg:px-16 z-10 border-t overflow-hidden"
       style={{
         borderColor: "rgba(239,68,68,0.15)",
         background: "radial-gradient(ellipse at 50% 0%, #2a0000 0%, #140000 45%, #080000 100%)",
@@ -343,25 +343,25 @@ export default function SkillMatrixSection({ onRegister }: { onRegister?: () => 
       <div className="max-w-6xl mx-auto relative z-10">
 
         {/* Header */}
-        <div className="flex items-end justify-between gap-6 mb-10 flex-wrap">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 flex-wrap">
           <div>
-       
+
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white uppercase tracking-[0.06em] leading-[0.95]">
               Skill <span style={{ color: "#ef4444" }}>Outcomes</span>
-            
+
             </h2>
             <p className="text-white/45 mt-4 max-w-xl text-sm font-light leading-relaxed">
               Each module is built for freshers. Complete a track and you walk away genuinely eligible for internships and junior roles in the industry.
             </p>
           </div>
 
-          
-         
+
+
         </div>
 
-        
+
         <div
-          className="relative inline-flex flex-wrap gap-1 p-1 rounded-xl mb-3 border"
+          className="relative flex flex-wrap gap-1 p-1 rounded-xl mb-3 border w-full sm:w-auto"
           style={{
             borderColor: "rgba(239,68,68,0.2)",
             background: "rgba(0,0,0,0.45)",
@@ -459,7 +459,7 @@ export default function SkillMatrixSection({ onRegister }: { onRegister?: () => 
               </div>
 
               {/* Skill cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-3">
                 {active.skills.map((skill, i) => (
                   <motion.div
                     key={skill.name}
@@ -508,7 +508,7 @@ export default function SkillMatrixSection({ onRegister }: { onRegister?: () => 
             {/* RIGHT: Job feed + CTA */}
             <div className="lg:col-span-5 flex flex-col gap-6">
               <TiltCard
-                className="rounded-2xl border p-6 flex flex-col gap-5 flex-1 relative overflow-hidden"
+                className="rounded-2xl border p-4 sm:p-6 flex flex-col gap-4 sm:gap-5 flex-1 relative overflow-hidden"
                 style={{
                   borderColor: "rgba(239,68,68,0.22)",
                   background: "linear-gradient(145deg, rgba(28,0,0,0.85) 0%, rgba(12,0,0,0.95) 100%)",

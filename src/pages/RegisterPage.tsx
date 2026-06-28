@@ -86,7 +86,7 @@ function Field({
                     placeholder={placeholder}
                     pattern={pattern}
                     inputMode={inputMode}
-                    className="w-full bg-red-950/10 border border-red-900/40 rounded-xl px-4 py-3.5 text-sm text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-red-500/80 focus:bg-red-950/20"
+                    className="w-full bg-red-950/10 border border-red-900/40 rounded-xl px-3 py-2.5 sm:py-3.5 text-sm text-white placeholder:text-white/25 outline-none transition-colors duration-200 focus:border-red-500/80 focus:bg-red-950/20"
                 />
                 <span
                     aria-hidden
@@ -277,7 +277,7 @@ export default function RegisterPage({ onClose }: RegisterPageProps) {
 
     return (
         <section
-            className="relative min-h-screen w-full flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 overflow-hidden"
+            className="relative min-h-screen w-full flex items-center justify-center px-4 sm:px-6 lg:px-8 py-6 sm:py-12 overflow-hidden"
             style={{ background: "radial-gradient(ellipse at top, #1a0303 0%, #0a0000 55%, #050000 100%)" }}
         >
             {/* Static background */}
@@ -300,7 +300,7 @@ export default function RegisterPage({ onClose }: RegisterPageProps) {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     onClick={onClose}
-                    className="group flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-white/55 hover:text-white transition-colors mb-6 cursor-pointer bg-transparent border-none outline-none"
+                    className="group flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-white/55 hover:text-white transition-colors mb-3 sm:mb-5 cursor-pointer bg-transparent border-none outline-none"
                 >
                     <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
                     Back to Home
@@ -316,7 +316,7 @@ export default function RegisterPage({ onClose }: RegisterPageProps) {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                            className="relative rounded-2xl overflow-hidden"
+                            className="relative rounded-2xl overflow-hidden w-full"
                             style={{
                                 background: "linear-gradient(160deg, rgba(28,3,3,0.92) 0%, rgba(10,0,0,0.96) 100%)",
                                 border: "1px solid rgba(239,68,68,0.28)",
@@ -346,7 +346,7 @@ export default function RegisterPage({ onClose }: RegisterPageProps) {
                                 BRIDGECOURSE • 3.0 • INTAKE
                             </div>
 
-                            <div className="p-6 sm:p-10">
+                            <div className="p-4 sm:p-8">
                                 {/* Eyebrow */}
                                 <div className="flex items-center justify-between mb-3">
                                     <p className="text-[10px] sm:text-xs text-red-400 font-mono tracking-[0.3em] uppercase flex items-center gap-2">
@@ -356,9 +356,9 @@ export default function RegisterPage({ onClose }: RegisterPageProps) {
                                     <span className="font-mono text-[10px] text-white/35 tracking-[0.2em] uppercase">Form 01</span>
                                 </div>
 
-                                <h1 className="font-podium text-3xl sm:text-5xl font-bold text-white uppercase tracking-wider leading-[1] mb-1">Register</h1>
+                                <h1 className="font-podium text-2xl sm:text-4xl font-bold text-white uppercase tracking-wider leading-[1] mb-0.5">Register</h1>
                                 <h1
-                                    className="font-podium text-3xl sm:text-5xl font-bold uppercase tracking-wider leading-[1]"
+                                    className="font-podium text-2xl sm:text-4xl font-bold uppercase tracking-wider leading-[1]"
                                     style={{
                                         background: "linear-gradient(90deg, #ef4444 0%, #fca5a5 50%, #ef4444 100%)",
                                         WebkitBackgroundClip: "text",
@@ -369,12 +369,12 @@ export default function RegisterPage({ onClose }: RegisterPageProps) {
                                     Now
                                 </h1>
 
-                                <p className="text-white/55 text-sm font-light mt-4 leading-relaxed">
+                                <p className="text-white/55 text-xs sm:text-sm font-light mt-2 sm:mt-3 leading-relaxed">
                                     Provide your academic information below to apply for the{" "}
                                     <span className="text-red-300">Bridgecourse 3.0</span> cohort.
                                 </p>
 
-                                <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-5">
+                                <form onSubmit={handleSubmit} className="mt-4 sm:mt-6 flex flex-col gap-3.5 sm:gap-5">
                                     <Field index={0} name="name" label="Full Name" placeholder="Enter your full name"
                                         icon={<User className="w-3 h-3 text-red-400" />}
                                         value={form.name} focused={focused} onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur} />
