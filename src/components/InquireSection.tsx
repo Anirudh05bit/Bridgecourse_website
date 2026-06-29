@@ -13,6 +13,8 @@ function InstagramIcon({ className }: { className?: string }) {
     )
 }
 
+const TICKER_TEXT = "BRIDGECOURSE 3.0  ◆  ACM · VICE CHAIR  ◆  INQUIRE NOW  ◆  "
+
 interface ContactLinkProps {
     href: string
     target?: string
@@ -76,6 +78,14 @@ export default function InquireSection() {
             <div className="pointer-events-none absolute -bottom-32 -right-32 w-96 h-96 rounded-full"
                 style={{ background: "radial-gradient(circle, rgba(127,29,29,0.18) 0%, transparent 70%)", filter: "blur(40px)" }} />
 
+            {/* keyframes for the marquee ticker */}
+            <style>{`
+                @keyframes inquire-marquee {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+            `}</style>
+
             <div className="max-w-5xl mx-auto relative z-10 px-4 sm:px-6">
                 {/* Header */}
                 <div className="text-center mb-8 sm:mb-12">
@@ -118,6 +128,29 @@ export default function InquireSection() {
                     className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-red-900/60 bg-[#140202]"
                     style={{ boxShadow: "0 30px 70px -25px rgba(239,68,68,0.3)" }}
                 >
+                    {/* top accent bar */}
+                    <div
+                        className="h-1 w-full"
+                        style={{ background: "linear-gradient(90deg, #4a0a0a, #dc2626 50%, #4a0a0a)" }}
+                    />
+
+                    {/* scrolling marquee ticker */}
+                    <div className="relative h-7 sm:h-8 overflow-hidden border-b border-red-900/40 bg-black/40">
+                        <div
+                            className="absolute inset-y-0 flex items-center whitespace-nowrap"
+                            style={{ animation: "inquire-marquee 16s linear infinite" }}
+                        >
+                            {Array.from({ length: 2 }).map((_, i) => (
+                                <span
+                                    key={i}
+                                    className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.35em] text-red-300/80 px-2"
+                                >
+                                    {TICKER_TEXT.repeat(4)}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-12">
 
                         {/* Photo — compact on mobile, taller on md+ */}

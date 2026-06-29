@@ -190,13 +190,7 @@ function SuccessCard({ name, phone, onClose }: { name: string; phone: string; on
                 <span className="text-red-400 font-semibold">{phone}</span>.
             </p>
 
-            <div className="w-full flex items-center gap-3 mt-2">
-                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-red-500/40 to-transparent" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">
-                    Ticket • #{(Math.abs(hashCode(name + phone)) % 9000 + 1000)}
-                </span>
-                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-red-500/40 to-transparent" />
-            </div>
+            
 
             <motion.button
                 whileHover={{ scale: 1.02 }}

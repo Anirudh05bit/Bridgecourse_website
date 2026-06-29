@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
-import { Brain, Smartphone, Shield, Code, Terminal, ChevronRight } from "lucide-react"
+import { Brain, Smartphone, Shield, Code, Terminal, ChevronRight, Gamepad2 } from "lucide-react"
 
 interface Course {
   id: string
@@ -134,6 +134,41 @@ async def main():
 
 asyncio.run(main())`,
   },
+  {
+    id: "gamedev",
+    title: "Game Development",
+    subtitle: "Project-First Unity Engineering",
+    icon: Gamepad2,
+    tag: "GAME",
+    lang: "csharp",
+    topics: [
+      "Unity Engine & C# Scripting — GameObjects, components, and writing real game logic",
+      "Physics & Movement — Rigidbody, colliders, input systems and player feel",
+      "Game Systems & UI — Score, health, menus, and the logic that holds a game together",
+      "Build & Deploy — WebGL export, itch.io publishing and portfolio presentation",
+    ],
+    benefits:
+      "Games are no longer just entertainment — they're the fastest growing creative and tech industry on the planet. Every mechanic you build teaches you real programming logic. Every system you design teaches you architecture. By the end of this track, you won't just play games — you'll understand exactly how they're made, and you'll have shipped ones yourself.",
+    codeSnippet: `using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    public float speed = 5f;
+    private Rigidbody2D rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
+        rb.velocity = new Vector2(x, y) * speed;
+    }
+}`,
+  },
 ]
 
 /* ── Typewriter hook ── */
@@ -171,10 +206,12 @@ function highlight(src: string, lang: string): string {
     kws = /\b(import|from|def|async|await|return|class|for|in|if|else|elif|while|with|as|try|except|print|self|None|True|False|lambda)\b/g
   } else if (lang === "html") {
     kws = /\b(DOCTYPE|html|head|body|title|form|input|label|button|script|h2)\b/g
+  } else if (lang === "csharp") {
+    kws = /\b(using|public|class|void|float|private|new|Input|GetAxis|GetComponent|Rigidbody2D|Vector2)\b/g
   } else {
     kws = /\b(import|from|const|let|var|async|await|return|class|new|function|if|else|export|default|true|false|null|undefined)\b/g
   }
-  s = s.replace(kws, '<span style="color:#f87171;font-weight:">$1</span>')
+  s = s.replace(kws, '<span style="color:#f87171;font-weight:bold">$1</span>')
   s = s.replace(/\b(\d+\.?\d*)\b/g, '<span style="color:#fb923c">$1</span>')
   s = s.replace(/([A-Za-z_][A-Za-z0-9_]*)(?=\()/g, '<span style="color:#fde68a">$1</span>')
   return s
