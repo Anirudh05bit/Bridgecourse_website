@@ -16,6 +16,7 @@ import {
   Radio,
   Crosshair,
   Activity,
+  Gamepad2,
 } from "lucide-react"
 
 /* ── Types ── */
@@ -104,7 +105,7 @@ const modules: Module[] = [
     id: "glitch",
     title: "Game Development",
     tag: "game-dev",
-    icon: Brain,
+    icon: Gamepad2,
     role: " Junior Game Developer/ Unity Fundamentals",
     demand: 94,
     salary: "$48k – $72k",
