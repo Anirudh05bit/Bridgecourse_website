@@ -106,35 +106,6 @@ decrypted = cipher_dec.decrypt(encrypted)
 print("Decrypted text:", decrypted.decode())`,
   },
   {
-    id: "python",
-    title: "Python & Systems",
-    subtitle: "High-Performance Concurrency & Microservices",
-    icon: Code,
-    tag: "PY",
-    lang: "python",
-    topics: [
-      "Asyncio Concurrency & Multiprocessing Systems",
-      "High-Performance API Architectures (FastAPI / gRPC)",
-      "Algorithms, Advanced Data Structures & Memory Layouts",
-      "Automated System Scripting & DevOps Pipelines",
-    ],
-    benefits:
-      "Python is the backbone of modern machine learning, systems scripting, and data engineering. Mastering asyncio and systems-level Python allows you to write highly efficient code, processing millions of tasks concurrently — making you a force in backend, ML, and infrastructure roles.",
-    codeSnippet: `import asyncio
-
-async def worker(task_id: int):
-    await asyncio.sleep(0.01)
-    return f"Task {task_id} synchronized"
-
-async def main():
-    results = await asyncio.gather(
-        *(worker(i) for i in range(1000))
-    )
-    print(f"Processed {len(results)} operations.")
-
-asyncio.run(main())`,
-  },
-  {
     id: "gamedev",
     title: "Game Development",
     subtitle: "Project-First Unity Engineering",
@@ -169,6 +140,36 @@ public class PlayerController : MonoBehaviour
     }
 }`,
   },
+  {
+    id: "python",
+    title: "Python & Systems",
+    subtitle: "High-Performance Concurrency & Microservices",
+    icon: Code,
+    tag: "PY",
+    lang: "python",
+    topics: [
+      "Asyncio Concurrency & Multiprocessing Systems",
+      "High-Performance API Architectures (FastAPI / gRPC)",
+      "Algorithms, Advanced Data Structures & Memory Layouts",
+      "Automated System Scripting & DevOps Pipelines",
+    ],
+    benefits:
+      "Python is the backbone of modern machine learning, systems scripting, and data engineering. Mastering asyncio and systems-level Python allows you to write highly efficient code, processing millions of tasks concurrently — making you a force in backend, ML, and infrastructure roles.",
+    codeSnippet: `import asyncio
+
+async def worker(task_id: int):
+    await asyncio.sleep(0.01)
+    return f"Task {task_id} synchronized"
+
+async def main():
+    results = await asyncio.gather(
+        *(worker(i) for i in range(1000))
+    )
+    print(f"Processed {len(results)} operations.")
+
+asyncio.run(main())`,
+  },
+
 ]
 
 /* ── Typewriter hook ── */

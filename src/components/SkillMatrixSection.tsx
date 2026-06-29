@@ -101,6 +101,26 @@ const modules: Module[] = [
     jobTitles: ["Cybersecurity Intern", "Junior SOC Analyst", "IT Security Trainee", "Junior Ethical Hacker"],
   },
   {
+    id: "glitch",
+    title: "Game Development",
+    tag: "game-dev",
+    icon: Brain,
+    role: " Junior Game Developer/ Unity Fundamentals",
+    demand: 94,
+    salary: "$48k – $72k",
+    keywords: [
+      "Unity", "c#", "TileMaps", "Animator", "Colliders", "UI Canvas",
+      "Spawners", "WebGl", "itch.io", "Prefabs", "Blender",
+    ],
+    skills: [
+      { name: "Physics & Movement", tag: "Scenes / GameObjects", description: "Set up scenes, work with the component system, and write C# scripts that actually do something.", level: 86 },
+      { name: "Game Systems", tag: "Rigidbody / Input", description: "Build player controllers that feel responsive — movement, jumping, collision, and physical interaction.", level: 78 },
+      { name: "Build & Deploy", tag: "Score / UI / Menus", description: "Wire up the systems every game needs — health bars, score counters, pause menus, and game over screens.", level: 82 },
+      { name: "Deployment Targets", tag: "WebGL / itch.io", description: "Export your game for the browser, publish it publicly, and walk away with a portfolio link you can share anywhere.", level: 90 },
+    ],
+    jobTitles: ["Game Dev Intern", "Gameplay Programmer Trainee", "Junior Unity Developer", "Junior Level Designer"],
+  },
+  {
     id: "py",
     title: "Python & Systems",
     tag: "PY",
@@ -119,7 +139,8 @@ const modules: Module[] = [
       { name: "DevOps Scripting", tag: "Pipelines & Automation", description: "Automate deployments, CI/CD pipelines, and system operations with Python scripts.", level: 80 },
     ],
     jobTitles: ["Junior Python Developer", "Backend Intern", "Junior Automation Engineer", "Python Trainee"],
-  },
+  }
+
 ]
 
 /* ── AnimatedCounter ── */
