@@ -23,23 +23,34 @@ const courses: Course[] = [
     tag: "AI",
     lang: "typescript",
     topics: [
-      "LLM Orchestration (LangChain / LlamaIndex)",
-      "Semantic Search & Vector Databases (ChromaDB / Pinecone)",
-      "Autonomous Agentic Workflows & Tool Calling",
-      "Prompt Engineering & Local Model Deployments (Ollama)",
+      "Exploratory data analysis and data preprocessing ",
+      "Introduction to AI",
+      "Introduction to Machine Learning",
+      "Interactive Machine Learning capstone project",
     ],
     benefits:
-      "AI engineering is transitioning from simple APIs to autonomous agents. By mastering vector stores, semantic search, and autonomous pipelines, you stop being just a consumer of AI models and start building custom intelligence engines. This makes you eligible for high-demand AI developer roles.",
-    codeSnippet: `import { OpenAI, VectorDB } from "bridgecourse-ai";
+      "You will gain hands-on skills in exploratory data analysis and preprocessing to successfully clean and handle real-world datasets. Finally, you will apply core machine learning concepts by building an interactive capstone project to jumpstart your technical portfolio. And get a proper intro to AI",
+    codeSnippet: `from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
+from sklearn.preprocessing import StandardScaler
 
-const agent = new AutonomousAgent({
-  model: "llama-3.1-70b",
-  tools: [webSearch, databaseQuery],
-});
 
-await agent.execute(
-  "Analyze server logs & patch vulnerability"
-);`,
+def train_logistic_regression(X_train, X_test, y_train, y_test):
+    """Scales data, trains a Logistic Regression model, and prints a report."""
+    # Scale features
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+
+    # Train model
+    model = LogisticRegression(max_iter=1000)
+    model.fit(X_train_scaled, y_train)
+
+    # Evaluate
+    predictions = model.predict(X_test_scaled)
+    print("Evaluation Results:\n", classification_report(y_test, predictions))
+
+    return model, scaler`,
   },
   {
     id: "web-app",

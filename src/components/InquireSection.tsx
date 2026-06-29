@@ -48,8 +48,8 @@ function ContactLink({ href, target, rel, icon, label, value }: ContactLinkProps
 
 export default function InquireSection() {
     const phone = "+91 9133139468"
-    const instagramHandle = "@nishanth.devabathini"
-    const instagramUrl = "https://instagram.com/nishanth.devabathini"
+    const instagramHandle = "@nishanth_1812"
+    const instagramUrl = "https://instagram.com/nishanth_1812"
 
     const cardRef = useRef<HTMLDivElement>(null)
     const rx = useMotionValue(0)

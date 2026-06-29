@@ -9,8 +9,8 @@ export default function HeroSection() {
   const stats = [
     { value: "300+", label: "Freshers Transformed" },
     { value: "50+", label: "Hours Mentorship" },
-    { value: "3x", label: "Coding Confidence" },
-    
+    { value: "10x", label: "Coding Confidence" },
+
   ]
 
   return (
