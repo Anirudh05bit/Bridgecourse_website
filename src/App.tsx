@@ -6,16 +6,19 @@ import SkillMatrixSection from "./components/SkillMatrixSection"
 import InquireSection from "./components/InquireSection"
 import RegisterPage from "./pages/RegisterPage"
 import AdminDashboard from "./pages/AdminDashboard"
+import ProtectedRoute from "./components/ProtectedRoute"
+
+const ADMIN_PATH = "/bc3-control-x92j" // change this to your own secret string
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [currentView, setCurrentView] = useState<'home' | 'register' | 'admin'>(() => {
-    if (window.location.pathname === '/admin') return 'admin'
+    if (window.location.pathname === ADMIN_PATH) return 'admin'
     return 'home'
   })
 
   useEffect(() => {
-    const targetPath = currentView === 'admin' ? '/admin' : '/'
+    const targetPath = currentView === 'admin' ? ADMIN_PATH : '/'
     if (window.location.pathname !== targetPath) {
       window.history.pushState(null, '', targetPath)
     }
@@ -23,7 +26,7 @@ export default function App() {
 
   useEffect(() => {
     const handlePopState = () => {
-      if (window.location.pathname === '/admin') setCurrentView('admin')
+      if (window.location.pathname === ADMIN_PATH) setCurrentView('admin')
       else setCurrentView('home')
     }
     window.addEventListener('popstate', handlePopState)
@@ -127,7 +130,9 @@ export default function App() {
       {/* ── Main Content ── */}
       <div className="relative z-10 w-full flex flex-col px-4 sm:px-8 lg:px-16">
         {currentView === 'admin' ? (
-          <AdminDashboard onClose={() => setCurrentView('home')} />
+          <ProtectedRoute onDeny={() => setCurrentView('home')}>
+            <AdminDashboard onClose={() => setCurrentView('home')} />
+          </ProtectedRoute>
         ) : currentView === 'register' ? (
           <RegisterPage onClose={() => setCurrentView('home')} />
         ) : (
