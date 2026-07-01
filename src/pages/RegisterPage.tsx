@@ -11,10 +11,12 @@ const departments = ["CSE", "CSE-AI", "Cyber Security", "EEE", "ECE", "AIDS"]
 type FormState = { name: string; phone: string; rollNo: string; department: string }
 const FIELD_ORDER: (keyof FormState)[] = ["name", "phone", "rollNo", "department"]
 
+const ROLL_NUMBER_REGEX = /^am\.sc\.u4[a-zA-Z]{3}26\d{3}$/
+
 const isFieldValid = (key: keyof FormState, value: string) => {
     if (!value) return false
     if (key === "phone") return /^[0-9]{10}$/.test(value)
-    if (key === "rollNo") return value.trim().length >= 4
+    if (key === "rollNo") return ROLL_NUMBER_REGEX.test(value.trim())
     return value.trim().length > 1
 }
 
@@ -223,6 +225,9 @@ export default function RegisterPage({ onClose }: RegisterPageProps) {
         setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
+    const rollNoTouched = focused === null && form.rollNo.length > 0
+    const rollNoInvalid = rollNoTouched && !ROLL_NUMBER_REGEX.test(form.rollNo.trim())
+
     const handleFocus = (name: string) => setFocused(name)
     const handleBlur = () => setFocused(null)
 
@@ -381,6 +386,16 @@ export default function RegisterPage({ onClose }: RegisterPageProps) {
                                     <Field index={2} name="rollNo" label="Roll Number" placeholder="Enter your college roll number"
                                         icon={<Hash className="w-3 h-3 text-red-400" />}
                                         value={form.rollNo} focused={focused} onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur} />
+                                    {rollNoInvalid && (
+                                        <motion.p
+                                            initial={{ opacity: 0, y: -6 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            className="mt-1.5 text-[11px] font-mono text-red-400 tracking-wide"
+                                        >
+                                            Invalid roll number. Please enter in format:
+                                            <span className="text-red-300 font-semibold ml-1">am.sc.u4xxx26kkk</span>
+                                        </motion.p>
+                                    )}
 
                                     {/* Department select */}
                                     <div>
