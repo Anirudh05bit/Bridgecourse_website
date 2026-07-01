@@ -6,19 +6,16 @@ import SkillMatrixSection from "./components/SkillMatrixSection"
 import InquireSection from "./components/InquireSection"
 import RegisterPage from "./pages/RegisterPage"
 import AdminDashboard from "./pages/AdminDashboard"
-import ProtectedRoute from "./components/ProtectedRoute"
-
-const ADMIN_PATH = "/bc3-control-x92j" // change this to your own secret string
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [currentView, setCurrentView] = useState<'home' | 'register' | 'admin'>(() => {
-    if (window.location.pathname === ADMIN_PATH) return 'admin'
+    if (window.location.pathname === '/admin') return 'admin'
     return 'home'
   })
 
   useEffect(() => {
-    const targetPath = currentView === 'admin' ? ADMIN_PATH : '/'
+    const targetPath = currentView === 'admin' ? '/admin' : '/'
     if (window.location.pathname !== targetPath) {
       window.history.pushState(null, '', targetPath)
     }
@@ -26,7 +23,7 @@ export default function App() {
 
   useEffect(() => {
     const handlePopState = () => {
-      if (window.location.pathname === ADMIN_PATH) setCurrentView('admin')
+      if (window.location.pathname === '/admin') setCurrentView('admin')
       else setCurrentView('home')
     }
     window.addEventListener('popstate', handlePopState)
@@ -54,8 +51,6 @@ export default function App() {
   return (
     <div className="relative min-h-screen w-full bg-black text-foreground font-inter overflow-y-auto overflow-x-hidden">
 
-      {/* ── VIDEO: fixed on desktop, absolute inside hero wrapper on mobile ── */}
-      {/* Desktop (md+): fixed fullscreen as before */}
       <video
         autoPlay muted loop playsInline
         className="hidden md:block fixed inset-0 w-full h-full object-cover z-0"
@@ -65,7 +60,6 @@ export default function App() {
           type="video/mp4"
         />
       </video>
-      {/* Desktop overlay */}
       <div className="hidden md:block fixed inset-0 bg-black/15 z-[1] pointer-events-none" />
 
       {/* ── Navbar ── */}
@@ -130,16 +124,12 @@ export default function App() {
       {/* ── Main Content ── */}
       <div className="relative z-10 w-full flex flex-col px-4 sm:px-8 lg:px-16">
         {currentView === 'admin' ? (
-          <ProtectedRoute onDeny={() => setCurrentView('home')}>
-            <AdminDashboard onClose={() => setCurrentView('home')} />
-          </ProtectedRoute>
+          <AdminDashboard onClose={() => setCurrentView('home')} />
         ) : currentView === 'register' ? (
           <RegisterPage onClose={() => setCurrentView('home')} />
         ) : (
           <>
-            {/* ── MOBILE HERO: video fixed fullscreen like desktop ── */}
             <div className="relative">
-              {/* Mobile video — fixed fullscreen, same as desktop */}
               <video
                 autoPlay muted loop playsInline
                 className="md:hidden fixed inset-0 w-full h-full object-cover object-[70%_center] z-0"
@@ -149,7 +139,6 @@ export default function App() {
                   type="video/mp4"
                 />
               </video>
-              {/* Mobile gradient — fades to black after hero */}
               <div className="md:hidden fixed inset-0 z-[1] pointer-events-none"
                 style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.1) 55%, rgba(0,0,0,0.95) 100%)" }} />
               <div className="relative z-[2]">
